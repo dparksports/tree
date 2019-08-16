@@ -2,12 +2,12 @@
 
 using namespace std;
 
-long factorial(int n) {
+double factorial(int n) {
     if (n <= 1) {
         return 1;
     }
 
-    long result = n * factorial(n - 1);
+    double result = n * factorial(n - 1);
     return result;
 }
 
@@ -19,7 +19,7 @@ int main()
     cin >> n;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    long result = factorial(n);
+    double result = factorial(n);
 
     fout << result << "\n";
 
