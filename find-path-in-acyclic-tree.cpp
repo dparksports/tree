@@ -8,48 +8,64 @@
 
 using namespace std;
 
-static map<int,vector<int>> graph;
+class Tree {
+public:
+    map<int,vector<int>> graph;
 
-void findPath(int a, int b) {
-    vector<int> children = graph[a];
+    void findPath(int a, int b) {
+        vector<int> children = graph[a];
 
-    for (int i = 0; i < children.size(); ++i) {
-        if (children[i] == b) {
-            cout << a << "," << b << endl;
-            break;
+        for (int i = 0; i < children.size(); ++i) {
+            if (children[i] == b) {
+                cout << a << "," << b << endl;
+                break;
+            }
+        }
+
+        for (int j = 0; j < children.size(); ++j) {
+            findPath(children[j], b);
         }
     }
 
-    for (int j = 0; j < children.size(); ++j) {
-        findPath(children[j], b);
+    void insertEdge(int a, int b) {
+        vector<int> children = graph[a];
+        if (children.empty()) {
+            vector<int> children;
+            children.push_back(b);
+
+            graph[a] = children;
+        } else {
+            children.push_back(b);
+            cout << endl;
+        }
     }
-}
+};
+
+
 
 int main(){
+    Tree tree;
     string edgeString;
     int count;
     cin >> count;
 
-    int parent, child;
+    int a, b;
     while(count-- > 0) {
-        cin >> parent;
-        cin >> child;
+        cin >> a;
+        cin >> b;
 
-        vector<int> children = graph[parent];
-        children.push_back(child);
+        tree.insertEdge(a, b);
     }
 
     int queries;
     cin >> queries;
-
-    int a, b;
     while(queries-- > 0) {
         cin >> a;
         cin >> b;
 
-        findPath(a, b);
+        tree.findPath(a, b);
     }
 
-
-    cout << endl;
+    cout << "a" << endl;
+    return 0;
 }
