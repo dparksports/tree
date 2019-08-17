@@ -46,6 +46,8 @@ public:
             vector<int> children = graph[a];
             children.push_back(b);
 
+            // pass by value, so we copy it again
+            // otherwise, children vector change is localized.
             graph[a] = children;
 
             cout << endl;
