@@ -31,10 +31,8 @@ int main(){
     cin >> count;
 
     int parent, child;
-    string delimiter;
     while(count-- > 0) {
         cin >> parent;
-        cin >> delimiter;
         cin >> child;
 
         vector<int> children = graph[parent];
