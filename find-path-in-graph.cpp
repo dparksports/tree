@@ -14,6 +14,9 @@ public:
 
     void findPath(int a, int b) {
         vector<int> children = graph[a];
+        if (children.empty()) {
+            return;
+        }
 
         for (int i = 0; i < children.size(); ++i) {
             if (children[i] == b) {
@@ -28,14 +31,23 @@ public:
     }
 
     void insertEdge(int a, int b) {
-        vector<int> children = graph[a];
-        if (children.empty()) {
+        int count = graph.count(a);
+        cout << count;
+
+        map<int,vector<int>>::iterator iterator = graph.find(a);
+        if (iterator == graph.end()) {
             vector<int> children;
             children.push_back(b);
 
             graph[a] = children;
+
+            cout << endl;
         } else {
+            vector<int> children = graph[a];
             children.push_back(b);
+
+            graph[a] = children;
+
             cout << endl;
         }
     }
